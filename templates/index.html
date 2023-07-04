@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+   <title>To do App</title>
+</head>
+<body>
+
+
+
+   <h1>To-Do Website:</h1>
+   <form method="post" action="/add">
+      <div>
+         <div class="flex">
+            <input type="text" name="todo" placeholder="Add a todo" id="inline-full-name">
+         </div>
+         {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}<br>
+         </div>
+      <input type="submit" value="Add">
+   </form>
+
+   <br><br>
+   <hr>
+   <h2>To-Dos:</h2>
+   <br>
+   {% for todo in todos %}
+      {% if todo[2] != 1 %}
+      <div id="ToDoDiv">
+         <div id="First" class="flex-child">
+            <p>Your To-Do: {{todo[0]}}</p>
+            <p>ID: {{todo[1]}}</p>  
+
+         </div>
+         <div class="flex-child" id="Buttons">
+            <a href="/markasdone/{{todo[1]}}">Mark as Done</a>
+            <br>
+            <br>
+            <a href="/delete/{{todo[1]}}">Delete</a>
+         </div>
+      </div>
+      <br><br>
+      {% endif %}
+   {% endfor %}
+
+
+   <br><br>
+   <hr>
+
+
+</body>
+</html>
