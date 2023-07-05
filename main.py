@@ -18,26 +18,26 @@ class bcolors:
    UNDERLINE = '\033[4m'
 
 def checkdatabase(table_list):
-    con = sqlite3.connect("todo.db")
-    cursor = con.cursor()
-    for table_name in table_list:
-        query = cursor.execute(f"SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='todo'")
+   con = sqlite3.connect("todo.db")
+   cursor = con.cursor()
+   for table_name in table_list:
+      query = cursor.execute(f"SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='todo'")
 
-        result = query.fetchone()
-        if str(result)=="(1,)":
-            print(f"{bcolors.OKCYAN}{table_name} exists.{bcolors.ENDC}")
-        else:
-            print(f"{bcolors.FAIL}{table_name} does not exist.{bcolors.ENDC}")
-            try:
-                con.execute(f"CREATE TABLE `todo` (`todo` TEXT, `id` BIGINT) ;")
-                con.commit()
-                cursor = con.cursor()
-                print(f"{bcolors.OKCYAN}Created the table to-do succesfully{bcolors.ENDC}")
-            except Exception as e:
-                print(f"{bcolors.FAIL}ERROR: {e}{bcolors.ENDC}")
-                con.rollback()
-    print('The databases are checked.')
-    return
+      result = query.fetchone()
+      if str(result)=="(1,)":
+         print(f"{bcolors.OKCYAN}{table_name} exists.{bcolors.ENDC}")
+      else:
+         print(f"{bcolors.FAIL}{table_name} does not exist.{bcolors.ENDC}")
+         try:
+            con.execute(f"CREATE TABLE `todo` (`todo` TEXT, `id` BIGINT) ;")
+            con.commit()
+            cursor = con.cursor()
+            print(f"{bcolors.OKCYAN}Created the table to-do succesfully{bcolors.ENDC}")
+         except Exception as e:
+            print(f"{bcolors.FAIL}ERROR: {e}{bcolors.ENDC}")
+            con.rollback()
+   print('The databases are checked.')
+   return
 
 def get_todos():
    conn = sqlite3.connect('todo.db')

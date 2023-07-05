@@ -4,8 +4,8 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
-   <title>To do App</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+   <title>To-Do App</title>
 </head>
 <body>
 
@@ -37,13 +37,9 @@
       <div id="ToDoDiv">
          <div id="First" class="flex-child">
             <p>Your To-Do: {{todo[0]}}</p>
-            <p>ID: {{todo[1]}}</p>  
 
          </div>
          <div class="flex-child" id="Buttons">
-            <a href="/markasdone/{{todo[1]}}">Mark as Done</a>
-            <br>
-            <br>
             <a href="/delete/{{todo[1]}}">Delete</a>
          </div>
       </div>
@@ -54,7 +50,58 @@
 
    <br><br>
    <hr>
-
+   <div class="pure-menu pure-menu-scrollable menu-custom">
+      <ul class="pure-menu-list">
+         <li class="pure-menu-item">
+            <a href="#"
+               class="pure-menu-link">
+              HTML
+            </a>
+         </li>
+         <li class="pure-menu-item">
+            <a href="#"
+               class="pure-menu-link">
+              CSS
+            </a>
+         </li>
+         <li class="pure-menu-item">
+            <a href="#"
+               class="pure-menu-link">
+              Bootstrap
+            </a>
+         </li>
+         <li class="pure-menu-item">
+            <a href="#"
+               class="pure-menu-link">
+              Javascript
+            </a>
+         </li>
+         <li class="pure-menu-item">
+            <a href="#"
+               class="pure-menu-link">
+              JQuery
+            </a>
+         </li>
+         <li class="pure-menu-item">
+            <a href="#"
+               class="pure-menu-link">
+              React JS
+            </a>
+         </li>
+         <li class="pure-menu-item">
+            <a href="#"
+               class="pure-menu-link">
+              SQL
+            </a>
+         </li>
+         <li class="pure-menu-item">
+            <a href="#"
+               class="pure-menu-link">
+              MongoDB
+            </a>
+         </li>
+      </ul>
+   </div>
 
 </body>
 </html>
