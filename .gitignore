@@ -1,1 +1,5 @@
-"todo.db"
+
+/static/node_modules
+package.json
+package-lock.json
+*.db

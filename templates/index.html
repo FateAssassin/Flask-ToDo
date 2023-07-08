@@ -5,6 +5,8 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/bootstrap-icons/font/bootstrap-icons.css') }}">
+
    <title>To-Do App</title>
 </head>
 <body>
@@ -12,96 +14,63 @@
 
 
    <h1>To-Do Website:</h1>
-   <form method="post" action="/add">
-      <div>
-         <div class="flex">
-            <input type="text" name="todo" placeholder="Add a todo" id="inline-full-name">
-         </div>
-         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <p>{{message}}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}<br>
-         </div>
-      <input type="submit" value="Add">
-   </form>
+
+   <div class="AddTodoForm">
+      <form method="post" action="/add">
+         
+            <div class="AddToDo">
+               <input type="text" name="todo" placeholder="Todo"><span>*</span><br><br>
+
+               <label for="importancy">Importancy</label><br>
+               <select title="test" name="cars" id="cars">
+                  <option value="very-important">Very Important</option>
+                  <option value="important">Important</option>
+                  <option value="not">Not Important</option>
+                </select>
+            </div>
+            {% with messages = get_flashed_messages() %}
+               {% if messages %}
+                  {% for message in messages %}
+                     <p class="errorMessage"><span></span><i class="bi bi-emoji-frown"></i> | {{message}}</p>
+                  {% endfor %}
+                  {% else %}
+                  <br>
+                  {% endif %}
+
+
+         {% endwith %}
+         
+         <input type="submit" value="Add">
+      </form>
+   </div>
 
    <br><br>
    <hr>
    <h2>To-Dos:</h2>
    <br>
-   {% for todo in todos %}
-      {% if todo[2] != 1 %}
-      <div id="ToDoDiv">
-         <div id="First" class="flex-child">
-            <p>Your To-Do: {{todo[0]}}</p>
-
-         </div>
-         <div class="flex-child" id="Buttons">
-            <a href="/delete/{{todo[1]}}">Delete</a>
-         </div>
-      </div>
-      <br><br>
-      {% endif %}
-   {% endfor %}
+   
+   <div class="ToDos">
 
 
+         {% for todo in todos %}
+            {% if todo[2] != 1 %}
+            <div class="ToDo">
+               <p>Your To-Do: {{todo[0]}}</p>
+               <a href="/delete/{{todo[1]}}" class="deleteButton">Delete</a>
+            </div>
+            <br>
+            {% endif %}
+         {% endfor %}
+
+
+
+   </div><br>
+   <div class="AddTodo">
+      <button onclick="OpenAddTodo()"><span><i class="bi bi-pen"></i></span> | Add To-Do</button>
+   </div>
    <br><br>
    <hr>
-   <div class="pure-menu pure-menu-scrollable menu-custom">
-      <ul class="pure-menu-list">
-         <li class="pure-menu-item">
-            <a href="#"
-               class="pure-menu-link">
-              HTML
-            </a>
-         </li>
-         <li class="pure-menu-item">
-            <a href="#"
-               class="pure-menu-link">
-              CSS
-            </a>
-         </li>
-         <li class="pure-menu-item">
-            <a href="#"
-               class="pure-menu-link">
-              Bootstrap
-            </a>
-         </li>
-         <li class="pure-menu-item">
-            <a href="#"
-               class="pure-menu-link">
-              Javascript
-            </a>
-         </li>
-         <li class="pure-menu-item">
-            <a href="#"
-               class="pure-menu-link">
-              JQuery
-            </a>
-         </li>
-         <li class="pure-menu-item">
-            <a href="#"
-               class="pure-menu-link">
-              React JS
-            </a>
-         </li>
-         <li class="pure-menu-item">
-            <a href="#"
-               class="pure-menu-link">
-              SQL
-            </a>
-         </li>
-         <li class="pure-menu-item">
-            <a href="#"
-               class="pure-menu-link">
-              MongoDB
-            </a>
-         </li>
-      </ul>
-   </div>
 
 </body>
+<script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
 </html>

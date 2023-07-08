@@ -1,4 +1,35 @@
-.menu-custom {
+.errorMessage{
+    
+}
+
+.ToDos{
     height: 150px;
-    overflow: scroll
- }
+    width: 50%;
+    border: 1px solid black;
+    overflow: scroll;
+    transform: translateX(50%);
+}
+.ToDo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteButton{
+    margin-left: 115px;
+}
+
+.AddTodo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.AddTodo button{
+    padding: 10px 10px;
+    font-size: large;
+    background-color: lightblue;
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    cursor: pointer;
+}
