@@ -29,7 +29,7 @@ def checkdatabase(table_list):
       else:
          print(f"{bcolors.FAIL}{table_name} does not exist.{bcolors.ENDC}")
          try:
-            con.execute(f"CREATE TABLE `todo` (`todo` TEXT, `id` BIGINT) ;")
+            con.execute(f"CREATE TABLE `todo` (`todo` TEXT, `id` BIGINT, `importancy` TEXT) ;")
             con.commit()
             cursor = con.cursor()
             print(f"{bcolors.OKCYAN}Created the table to-do succesfully{bcolors.ENDC}")
@@ -51,7 +51,7 @@ def get_todos():
 @app.route("/")
 def index():
    todos = get_todos()
-
+   print(todos)
    return render_template("index.html", todos=todos)
 
 @app.route("/add", methods=["POST"])
@@ -72,7 +72,7 @@ def add_todo():
       id = query[0][1] + 1
    print(query)
 
-   c.execute("INSERT INTO todo VALUES (?, ?)", (request.form.get("todo"), id))
+   c.execute("INSERT INTO todo VALUES (?, ?, ?)", (request.form.get("todo"), id, request.form.get("importancy")))
    conn.commit()
    conn.close()
    return redirect(url_for("index"))

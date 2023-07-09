@@ -13,7 +13,7 @@
 
 
 
-   <h1>To-Do Website:</h1>
+   <h1 class="center">Your own To-Do List:</h1>
 
    <div class="AddTodoForm">
       <form method="post" action="/add">
@@ -22,7 +22,8 @@
                <input type="text" name="todo" placeholder="Todo"><span>*</span><br><br>
 
                <label for="importancy">Importancy</label><br>
-               <select title="test" name="cars" id="cars">
+               <select title="importancy" name="importancy" id="importancy" value="">
+                  <option value="" selected disabled hidden>Choose here</option>
                   <option value="very-important">Very Important</option>
                   <option value="important">Important</option>
                   <option value="not">Not Important</option>
@@ -45,8 +46,8 @@
    </div>
 
    <br><br>
-   <hr>
-   <h2>To-Dos:</h2>
+
+   <h2 class="center">To-Dos:</h2>
    <br>
    
    <div class="ToDos">
@@ -55,10 +56,10 @@
          {% for todo in todos %}
             {% if todo[2] != 1 %}
             <div class="ToDo">
-               <p>Your To-Do: {{todo[0]}}</p>
-               <a href="/delete/{{todo[1]}}" class="deleteButton">Delete</a>
+               <p>{{todo[0]}}</p>
+               <a href="/delete/{{todo[1]}}" class="deleteButton"><span><i class="bi bi-trash"></i></span> | Delete</a>
             </div>
-            <br>
+
             {% endif %}
          {% endfor %}
 
@@ -72,5 +73,14 @@
    <hr>
 
 </body>
-<script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+<script>
+   function OpenAddTodo() {
+      var ToDo = document.getElementsByClassName("AddTodoForm")[0]; // Access the first element in the collection
+   
+      if (ToDo) {
+         ToDo.style.display = "block"; // Show the element
+      }
+   }
+
+</script>
 </html>

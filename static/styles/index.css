@@ -1,9 +1,41 @@
+@font-face {
+    font-family: Roboto;
+    src: url("../assets/Roboto.ttf");
+}
+body{
+    margin: 0;
+
+    font-family: Roboto;
+}
+.center{
+    text-align: center;
+}
+.ToDos::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+/* Track */
+.ToDos::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+.ToDos::-webkit-scrollbar-thumb {
+    background: #c2c2c2; 
+}
+
+/* Handle on hover */
+.ToDos::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+
 .errorMessage{
     
 }
 
 .ToDos{
-    height: 150px;
+    height: 350px;
     width: 50%;
     border: 1px solid black;
     overflow: scroll;
@@ -11,13 +43,26 @@
 }
 .ToDo{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
+
+}
+.ToDo p{
+    margin-left: 10px;
+}
+.ToDo a{
+    margin-right: 15px;
 }
 
 .deleteButton{
     margin-left: 115px;
+}
+
+.AddTodoForm{
+    position: fixed;
+    right: 5%;
+    /* display: none; */
+    bottom: 5%;
 }
 
 .AddTodo{
