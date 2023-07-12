@@ -4,11 +4,27 @@
 }
 body{
     margin: 0;
-
     font-family: Roboto;
 }
 .center{
     text-align: center;
+}
+.split{
+    background-color: gray;
+    height: 10px;
+}
+
+.errorMessage{
+    
+}
+
+
+.ToDos{
+    height: 350px;
+    width: 50%;
+    border: 1px solid black;
+    overflow: scroll;
+    transform: translateX(50%);
 }
 .ToDos::-webkit-scrollbar {
     width: 10px;
@@ -29,29 +45,36 @@ body{
     background: #555; 
 }
 
-
-.errorMessage{
-    
+.very-important{
+    background-color: rgba(247, 76, 76, 0.5);
+}
+.very-important .ToDo{
+    background-color: rgba(247, 76, 76, 0.9);
+}
+.important{
+    background-color: rgba(233, 159, 0, 0.5);
+}
+.important .ToDo{
+    background-color: rgba(233, 159, 0, 0.9);
 }
 
-.ToDos{
-    height: 350px;
-    width: 50%;
-    border: 1px solid black;
-    overflow: scroll;
-    transform: translateX(50%);
-}
 .ToDo{
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 .ToDo p{
     margin-left: 10px;
 }
 .ToDo a{
     margin-right: 15px;
+}
+.ToDo button{
+    margin-right: 15px;
+}
+.editTodo{
+    margin-left: 10px;
+    display: none;
 }
 
 .deleteButton{
@@ -65,12 +88,12 @@ body{
     bottom: 5%;
 }
 
-.AddTodo{
+.addTodo{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.AddTodo button{
+.addTodo button{
     padding: 10px 10px;
     font-size: large;
     background-color: lightblue;

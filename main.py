@@ -60,7 +60,7 @@ def add_todo():
    c = conn.cursor()
    todo = request.form.get("todo")
    if todo == "":
-      flash("Please enter a To-Do.")
+      flash("Please specify a To-Do!")
       return redirect(url_for("index"))
    
    query = c.execute("select * FROM todo ORDER BY id DESC LIMIT 1")

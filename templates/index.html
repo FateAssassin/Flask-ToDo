@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
    <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/bootstrap-icons/font/bootstrap-icons.css') }}">
-
+   <link rel="icon" href="{{ url_for('static', filename='assets/todo4you_component.png')}}">
    <title>To-Do App</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
       <form method="post" action="/add">
          
             <div class="AddToDo">
-               <input type="text" name="todo" placeholder="Todo"><span>*</span><br><br>
+               <input type="text" name="todo" placeholder="Todo" class="TodoInput"><span>*</span><br><br>
 
                <label for="importancy">Importancy</label><br>
                <select title="importancy" name="importancy" id="importancy" value="">
@@ -41,7 +41,7 @@
 
          {% endwith %}
          
-         <input type="submit" value="Add">
+         <input type="submit" value="Add Todo">
       </form>
    </div>
 
@@ -50,37 +50,73 @@
    <h2 class="center">To-Dos:</h2>
    <br>
    
-   <div class="ToDos">
+   <div class="ToDos">  
+         <div class="very-important">
+
+               {% for todo in todos %}
+                  {% if todo[2] == "very-important" %}
+                  <br>
+                  <div class="ToDo very-importantDiv {{todo[1]}}">
+                     <p class="TodoParagraph">{{todo[0]}}</p>
+                     <div class="editTodo">
+                        <br>
+                        <input type="text" name="" value="{{todo[0]}}" style="display: block;" placeholder="New To-Do">
+                        <br>
+                     </div>
+                     
+                     <div class="actionTodo">
+                        <a href="/delete/{{todo[1]}}" class="deleteButton"><span><i class="bi bi-trash"></i></span> | Delete</a>
+                        <button onclick="openEditMode({{todo[1]}})"><span><i class="bi bi-pen"></i></span> | Edit </button>
+                     </div>
+                     <div class="editTodo">
+                        <a href=""><i class="bi bi-arrow-up"></i></a>
+                        <a href=""><i class="bi bi-arrow-down"></i></a>
+                        <a href=""><i class="bi bi-check-square-fill" style="color: lightgreen;"></i></a>                        
+                     </div>
+                  </div>
+                  <br>
+                  {% endif %}
+               {% endfor %} 
+
+         </div>
 
 
-         {% for todo in todos %}
-            {% if todo[2] != 1 %}
-            <div class="ToDo">
-               <p>{{todo[0]}}</p>
-               <a href="/delete/{{todo[1]}}" class="deleteButton"><span><i class="bi bi-trash"></i></span> | Delete</a>
-            </div>
+         <div class="important">
 
-            {% endif %}
-         {% endfor %}
+            {% for todo in todos %}
+               {% if todo[2] == "important" %}
+               <br>
+               <div class="ToDo importantDiv {{todo[1]}}">
+                  <p class="TodoParagraph">{{todo[0]}}</p>
+                  <div class="editTodo">
+                     <br>
+                     <input type="text" name="" value="{{todo[0]}}" style="display: block;" placeholder="New To-Do">
+                     <a href=""></a>
+                  </div>
+                  
+                  <div class="actionTodo">
+                     <a href="/delete/{{todo[1]}}" class="deleteButton"><span><i class="bi bi-trash"></i></span> | Delete</a>
+                     <button onclick="openEditMode({{todo[1]}})"><span><i class="bi bi-pen"></i></span> | Edit </button>
+                  </div>
+                  <div class="editTodo">
+                     <a href=""><i class="bi bi-arrow-up"></i></a>
+                     <a href=""><i class="bi bi-arrow-down"></i></a>
+                  </div>
+               </div>
+               <br>
+               {% endif %}
+            {% endfor %} 
 
+      </div>
 
 
    </div><br>
-   <div class="AddTodo">
-      <button onclick="OpenAddTodo()"><span><i class="bi bi-pen"></i></span> | Add To-Do</button>
+   <div class="addTodo">
+      <button onclick="OpenAddTodo()"><span><i class="bi bi-clipboard2-plus"></i></span> | Add To-Do</button>
    </div>
    <br><br>
    <hr>
 
 </body>
-<script>
-   function OpenAddTodo() {
-      var ToDo = document.getElementsByClassName("AddTodoForm")[0]; // Access the first element in the collection
-   
-      if (ToDo) {
-         ToDo.style.display = "block"; // Show the element
-      }
-   }
-
-</script>
+<script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
 </html>
