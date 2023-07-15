@@ -9,10 +9,10 @@ function OpenAddTodo() {
 var errorElements = document.getElementsByClassName("errorMessage");
 
 if (errorElements.length !== 0) {
-
-    var inputArea = document.getElementsByClassName("TodoInput")[0];
-    inputArea.style.border = "2px solid rgba(248, 17, 0, 0.7)";
-
+    if ("Please specify a To-Do!" in errorElements){
+        var inputArea = document.getElementsByClassName("TodoInput")[0];
+        inputArea.style.border = "2px solid rgba(248, 17, 0, 0.7)";
+    }   
 }
 
 function openEditMode(id) {

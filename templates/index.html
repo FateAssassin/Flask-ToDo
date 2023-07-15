@@ -29,17 +29,6 @@
                   <option value="not">Not Important</option>
                 </select>
             </div>
-            {% with messages = get_flashed_messages() %}
-               {% if messages %}
-                  {% for message in messages %}
-                     <p class="errorMessage"><span></span><i class="bi bi-emoji-frown"></i> | {{message}}</p>
-                  {% endfor %}
-                  {% else %}
-                  <br>
-                  {% endif %}
-
-
-         {% endwith %}
          
          <input type="submit" value="Add Todo">
       </form>
@@ -69,9 +58,8 @@
                         <button onclick="openEditMode({{todo[1]}})"><span><i class="bi bi-pen"></i></span> | Edit </button>
                      </div>
                      <div class="editTodo">
-                        <a href=""><i class="bi bi-arrow-up"></i></a>
-                        <a href=""><i class="bi bi-arrow-down"></i></a>
-                        <a href=""><i class="bi bi-check-square-fill" style="color: lightgreen;"></i></a>                        
+                        <a href="/movedown/{{todo[1]}}"><i class="bi bi-arrow-down"></i></a>
+                        <a href="/editTodo/{{todo[1]}}"><i class="bi bi-check-square-fill" style="color: lightgreen;"></i></a>                        
                      </div>
                   </div>
                   <br>
@@ -116,6 +104,21 @@
    </div>
    <br><br>
    <hr>
+
+   {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         <div class="error">
+            <p class="errorMessage"><span></span><i class="bi bi-emoji-frown"></i> | {{message}}</p>
+         </div>
+      
+      {% endfor %}
+      {% else %}
+      <br>
+      {% endif %}
+
+   <!-- ADD A APPEARING THINGY HERE -->
+   {% endwith %}
 
 </body>
 <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>

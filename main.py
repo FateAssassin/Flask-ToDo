@@ -85,7 +85,29 @@ def deleteTodo(id):
    conn.commit()
    conn.close()
    return redirect(url_for("index"))
+
+# @app.route("/editTodo/<string:id>")
+# def editTodo(id):
+#    conn = sqlite3.connect('todo.db')
+#    c = conn.cursor()
+#    todo = request.form.get("todo")
+#    if todo == "":
+#       flash("Please specify a To-Do!")
+#       return redirect(url_for("index"))
    
+#    query = c.execute("select * FROM todo ORDER BY id DESC LIMIT 1")
+#    query = query.fetchall()
+
+#    if len(query) == 0:
+#       id = 1
+#    else:
+#       id = query[0][1] + 1
+#    print(query)
+
+#    c.execute("INSERT INTO todo VALUES (?, ?, ?)", (request.form.get("todo"), id, request.form.get("importancy")))
+#    conn.commit()
+#    conn.close()
+#    return redirect(url_for("index"))
 
 if __name__ == '__main__':
    checkdatabase(table_name_list)
